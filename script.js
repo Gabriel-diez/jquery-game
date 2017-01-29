@@ -1,133 +1,65 @@
+var meetLicorne = false;
 
-	var buttons = $(".section button");
-	var status = $("#status");
-	var meetLicorne = false;
+function gotoSection(key) {
+	var url = 'history/' + key + '.html';
+	$.get(url, function(data) {
+		$('.section').html(data);
+		$.getScript('binding.js');
+	})
+}
 
-	// unbind button in case already binded
-	buttons.off('click');
-
-	buttons.click( function() {
-			// $(this).closest('.section').hide();
-			// gotoSection($(this).attr('go'));
-			var go = $(this).attr('go');
-
-			switch (go) {
-				case "wakeUp":
-					startGame();
-					break;
-				case "intro":
-					location.reload();
-					break;
-				case "lac":
-					gotoSectionAttack(go, 2, true)
-					break;
-				case "ignoreCarotte":
-				case "helpCarotte":
-					gotoSectionAttack(go, 1, false);
-					break;
-				case "attackCarotte":
-					gotoSectionAttack(go, 1, false);
-					addInventory('carotte');
-					break;
-				case "caverne":
-					gotoSection(go);
-					setBackground(go);
-					setLife(0);
-					break;
-				case "attackLicorne":
-					gotoSectionAttack(go, 2, false);
-					break;
-				case "eatCarotte":
-					gotoSection(go);
-					removeInventory('carotte');
-					setBackground(go);
-					meetLicorne = true;
-					break;
-				case "askLicorne":
-					gotoSection(go);
-					break;
-				case "licorne":
-					if (meetLicorne) {
-						gotoSection("askLicorne");
-						setBackground("eatCarotte");
-					} else {
-						gotoSection(go);
-						setBackground(go);
-					}
-					break;
-				default:
-					gotoSection(go);
-					setBackground(go);
-			}
-	} );
-
-	function gotoSection(key) {
-		var url = 'history/' + key + '.html';
-		$.get(url, function(data) {
-			$('.section').html(data);
-			$.getScript('script.js');
-		})
+function gotoSectionAttack(key, x, background) {
+	gotoSection(key);
+	animationDmg();
+	loseLife(x);
+	if (background) {
+		setBackground(key);
 	}
+}
 
-	function gotoSectionAttack(key, x, background) {
-		gotoSection(key);
-		animationDmg();
-		loseLife(x);
-		if (background) {
-			setBackground(key);
-		}
-	}
+function setBackground(key) {
+	$('body').css('background-image', "url(img/" + key + ".jpg)");
+	$('body').css('background-size', 'cover');
+}
 
-	function setBackground(key) {
-		$('body').css('background-image', "url(img/" + key + ".jpg)");
-		$('body').css('background-size', 'cover');
-	}
+function getLife() {
+	return $('#lifeValue').html();
+}
 
-	function getLife() {
-		return $('#lifeValue').html();
-	}
+function setLife(v) {
+	$('#lifeValue').html(v);
+}
 
-	function setLife(v) {
-		$('#lifeValue').html(v);
+function loseLife(x) {
+	setLife(getLife() - x);
+	if (getLife() <= "0") {
+		endGame();
 	}
+}
 
-	function loseOneLife() {
-		setLife(getLife() - 1);
-		if (getLife() === "0") {
-			endGame();
-		}
-	}
+function startGame() {
+	setLife(5);
+	gotoSection('wakeUp');
+}
 
-	function loseLife(x) {
-		setLife(getLife() - x);
-		if (getLife() <= "0") {
-			endGame();
-		}
-	}
+function endGame() {
+	gotoSection("death");
+	setBackground("death");
+}
 
-	function startGame() {
-		setLife(5);
-		gotoSection('wakeUp');
-	}
+function animationDmg() {
+	$('html').effect("highlight", {color: 'red'}, 200);
+}
 
-	function endGame() {
-		gotoSection("death");
-		setBackground("death");
-	}
+function addInventory(object) {
+	var span = $('<span id=' + object + '></span>');
+	var img = $('<img src="img/' + object + '.jpg" />');
+	img.css('vertical-align', "middle");
+	img.css('width', '20px');
+	span.append(img);
+	$('.inventory').append(span);
+}
 
-	function animationDmg() {
-		$('html').effect("highlight", {color: 'red'}, 200);
-	}
-
-	function addInventory(object) {
-		var span = $('<span id=' + object + '></span>');
-		var img = $('<img src="img/' + object + '.jpg" />');
-		img.css('vertical-align', "middle");
-		img.css('width', '20px');
-		span.append(img);
-		$('.inventory').append(span);
-	}
-
-	function removeInventory(object) {
-		$('#'+object).remove();
-	}
+function removeInventory(object) {
+	$('#'+object).remove();
+}
