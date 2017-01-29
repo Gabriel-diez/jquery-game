@@ -54,7 +54,7 @@
 		var url = 'history/' + key + '.html';
 		$.get(url, function(data) {
 			$('.section').html(data);
-			$.getScript('sorcery.js');
+			$.getScript('script.js');
 		})
 	}
 
