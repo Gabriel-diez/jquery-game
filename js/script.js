@@ -4,7 +4,7 @@ function gotoSection(key) {
 	var url = 'history/' + key + '.html';
 	$.get(url, function(data) {
 		$('.section').html(data);
-		$.getScript('binding.js');
+		$.getScript('js/binding.js');
 	})
 }
 
@@ -18,7 +18,7 @@ function gotoSectionAttack(key, x, background) {
 }
 
 function setBackground(key) {
-	$('body').css('background-image', "url(img/" + key + ".jpg)");
+	$('body').css('background-image', "url(../img/" + key + ".jpg)");
 	$('body').css('background-size', 'cover');
 }
 
@@ -53,7 +53,7 @@ function animationDmg() {
 
 function addInventory(object) {
 	var span = $('<span id=' + object + '></span>');
-	var img = $('<img src="img/' + object + '.jpg" />');
+	var img = $('<img src="../img/' + object + '.jpg" />');
 	img.css('vertical-align', "middle");
 	img.css('width', '20px');
 	span.append(img);
