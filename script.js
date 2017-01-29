@@ -1,6 +1,7 @@
 
 	var buttons = $(".section button");
 	var status = $("#status");
+	var meetLicorne = false;
 
 	// unbind button in case already binded
 	buttons.off('click');
@@ -40,9 +41,19 @@
 					gotoSection(go);
 					removeInventory('carotte');
 					setBackground(go);
+					meetLicorne = true;
 					break;
 				case "askLicorne":
 					gotoSection(go);
+					break;
+				case "licorne":
+					if (meetLicorne) {
+						gotoSection("askLicorne");
+						setBackground("eatCarotte");
+					} else {
+						gotoSection(go);
+						setBackground(go);
+					}
 					break;
 				default:
 					gotoSection(go);
