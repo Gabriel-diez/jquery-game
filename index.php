@@ -1,34 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-	<head>
-		<script src="js/src/jquery.min.js"></script>
-		<script src="js/src/jquery-ui.min.js"></script>
-		<link type="text/css" rel="stylesheet" href="css/style.css" />
-		<meta lang="fr" xml:lang="fr" content="text/html;charset=UTF-8" http-equiv="Content-Type">
-		<title>Le poireau disparu</title>
-	</head>
-
-	<body>
-		<div id="status">
-			<div class="life">
-				Life : <span id="lifeValue">--</span>
-			</div>
-			<div class="inventory">
-				Inventaire :
-			</div>
-		</div>
-
-		<div class="section">
-		  <h2>Le poireau disparu</h2>
-
-			Ton ami Monsieur Poireau a disparu... aide Monsieur Radis à le retrouver !
-
-		  <button go="wakeUp">Commencer l'aventure !</button>
-		</div>
-
-	<script src="js/script.js"></script>
-	<script src="js/binding.js"></script>
-
-	</body>
-
-</html>
+<?php
+  include_once("home.html");
+ ?>
