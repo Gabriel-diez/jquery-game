@@ -67,3 +67,7 @@ h2 {
 body {
 	background-image: url('../img/intro.jpg');
 }
+
+p {
+	line-height: 1.5;
+}

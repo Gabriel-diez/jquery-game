@@ -11,10 +11,10 @@ function gotoSection(key) {
 function gotoSectionAttack(key, x, background) {
 	gotoSection(key);
 	animationDmg();
-	loseLife(x);
 	if (background) {
 		setBackground(key);
 	}
+	loseLife(x);
 }
 
 function setBackground(key) {
@@ -67,8 +67,6 @@ function removeInventory(object) {
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function(){
         $('<img/>')[0].src = this;
-        // Alternatively you could use:
-        // (new Image()).src = this;
     });
 }
 
