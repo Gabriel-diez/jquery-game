@@ -50,6 +50,8 @@ buttons.click( function() {
           setBackground(go);
         }
         break;
+      case "forest":
+        $('#wanted-img').hide();
       default:
         gotoSection(go);
         setBackground(go);
