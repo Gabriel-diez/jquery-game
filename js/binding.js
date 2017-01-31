@@ -16,6 +16,15 @@ buttons.click( function() {
       case "lac":
         gotoSectionAttack(go, 2, true)
         break;
+      case "backLac":
+        if (meetLicorne) {
+            gotoSection('cascade');
+            setBackground('cascade');
+        } else {
+            gotoSection('forest');
+            setBackground('forest');
+        }
+        break;
       case "ignoreCarotte":
       case "helpCarotte":
         gotoSectionAttack(go, 1, false);
