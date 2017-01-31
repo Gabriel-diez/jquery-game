@@ -63,3 +63,26 @@ function addInventory(object) {
 function removeInventory(object) {
 	$('#'+object).remove();
 }
+
+function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+        // Alternatively you could use:
+        // (new Image()).src = this;
+    });
+}
+
+preload([
+    'img/carotte.jpg',
+    'img/cascade.jpg',
+    'img/caverne.jpg',
+	'img/chemin.jpg',
+	'img/death.jpg',
+	'img/eatCarotte.jpg',
+	'img/forest.jpg',
+	'img/inForest.jpg',
+	'img/intro.jpg',
+	'img/lac.jpg',
+	'img/licorne.jpg',
+	'img/poireau.jpg',
+]);
